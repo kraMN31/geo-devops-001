@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: geo-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: geo-app
+  template:
+    metadata:
+      labels:
+        app: geo-app
+    spec:
+      containers:
+      - name: geo-app
+        image: 740955001227.dkr.ecr.us-east-1.amazonaws.com/geo-app:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8082
+# service type loadbalancer       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: geo-app
+    k8s-app: geo-app
+  name: geo-app
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8082
+  type: LoadBalancer
+  selector:
+    app: geo-app
