@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: geo-devops-001
-        image: 740955001227.dkr.ecr.us-east-1.amazonaws.com/geo-devops-001:latest
+        image: 740955001227.dkr.ecr.us-east-1.amazonaws.com/geo-devops-001@sha256:5d65e1e63b59b9c7d62205f37407a554ef167cae273062c5acaa5e89ab78204e
         imagePullPolicy: Always
         ports:
         - containerPort: 8082
